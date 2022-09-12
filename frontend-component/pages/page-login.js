@@ -1,21 +1,18 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ScrollView, Button, TouchableOpacity, TextInput, ToastAndroid } from 'react-native';
 
-//redux
-// import { useSelector, useDispatch, Provider } from 'react-redux';
-// import {
-//   updateUser
-// } from './redux-component/redux-slice';
-// import Store from './redux-component/store-redux';
-
 //icons
 import { AntDesign } from '@expo/vector-icons';
+
+
+//login functions
+const LoginHandler = require('../func-components/func-login');
 
 export default function PageLogin({ nav }) {
 
     //username & password val
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [email, setEmail] = useState('user1@gmail.com');
+    const [pass, setPass] = useState('123qwe!@asd');
 
     //promise to register new user -------------------------------------------------------------
     const [load, setLoad] = useState(false);
@@ -65,7 +62,17 @@ export default function PageLogin({ nav }) {
 
 
                     <TouchableOpacity
-                        onPress={GoToDashboard}
+                        onPress={() => {
+
+                            var validateLogin = new Promise(function (resolve, reject) {
+                                const res = LoginHandler(email, pass, load);
+                                resolve(res);
+                            });
+
+                            validateLogin.then(function (value) {
+                                value == true ? GoToDashboard() : alert("Failed");
+                            });
+                        }}
                     >
                         {load ?
                             <View style={[styles.loginButton1, styles.loading]}>

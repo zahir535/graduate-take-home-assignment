@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, TouchableOpacity, TextInput, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, TouchableOpacity, TextInput } from 'react-native';
 
 
 //icons
 import { AntDesign } from '@expo/vector-icons';
 
+//register functions
+const RegisterHandler = require('../func-components/func-register');
+
+
 export default function PageRegister({ nav }) {
 
-
-
     //username & password val
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [matchPass, setMatchPass] = useState('');
+    const [name, setName] = useState('user1');
+    const [email, setEmail] = useState('user1@gmail.com');
+    const [pass, setPass] = useState('123qwe!@asd');
+    const [matchPass, setMatchPass] = useState('123qwe!@asd');
 
     //promise to register new user -------------------------------------------------------------
     const [load, setLoad] = useState(false);
@@ -76,7 +78,18 @@ export default function PageRegister({ nav }) {
 
 
                     <TouchableOpacity
-                        onPress={GoToDashboard}
+                        onPress={() => {
+
+                            var validateRegistration = new Promise(function(resolve, reject){
+                                const res = RegisterHandler(name, email, pass, matchPass, load);
+                                resolve(res);
+                            });
+
+                            validateRegistration.then(function(value){
+                                value == true ? GoToDashboard() : alert("Failed");
+                            });
+
+                        }}
                     >
                         {load ?
                             <View style={[styles.registerButton1, styles.loading]}>
