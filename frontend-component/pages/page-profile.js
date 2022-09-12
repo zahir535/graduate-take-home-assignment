@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { useEffect } from 'react';
 
 //icons
 import { AntDesign, MaterialCommunityIcons, Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
@@ -14,6 +14,8 @@ export default function PageProfile({ navigation }) {
         navigation.replace('Login')
     }
 
+
+
     return (
         <View style={styles.container}>
 
@@ -24,7 +26,7 @@ export default function PageProfile({ navigation }) {
                     source={require('../../assets/splash.png')}
                 />
                 <View>
-                    <Text style={styles.h3title}>Sandra</Text>
+                    <Text style={styles.h3title}>{'Sandra'}</Text>
                     <Text style={styles.h4title}>Prime Minister</Text>
                 </View>
             </View>

@@ -23,6 +23,12 @@ const RegisterHandler = (name, email, pass, matchPass, load) => {
 
                 //save data in async
                 let newValue = [name, email, pass, matchPass];
+                // let newValue = {
+                //     name: name,
+                //     email: email,
+                //     pass: pass,
+                //     matchPass: matchPass,
+                // };
 
                 return storeData('user', newValue);
 

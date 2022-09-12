@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, ScrollView, Image, Alert, useColorScheme } from 'react-native';
 import * as React from 'react';
-import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //pages
